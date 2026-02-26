@@ -246,3 +246,34 @@ The log files are usually temporary, deleted at the end of a training run. But t
 │   │   │   ├── tests  
 │   │   │   │   ├── *eval_conn-version\-{EJCONN VERSION}\_test-set\-{TV-TEST SPLIT}_iteration\-{ITERATION NUMBER}.json* : evaluation metrics  
 │   │   │   │   ├── *results_test-set\-{TV-TEST SPLIT}\_iteration\-{ITERATION NUMBER}.json* : training run data and tests on the TVT tiles  
+
+## Dependencies
+The scripts were executed with Python 3.10. The following packages are required.
+```
+numpy
+numexpr
+matplotlib
+scipy
+pandas
+
+geopandas
+shapely
+pyproj
+
+xarray
+rioxarray
+rasterio
+opencv-python
+imgaug
+cairosvg
+
+torch
+lightning
+timm
+segmentation-models-pytorch
+torchgeo
+terratorch
+scikit-learn
+```
+
+The neural network training must be performed on an NVIDIA GPU (tried on Tesla P40, Tesla V100-PCIE-32GB, GeForce RTX 4070 Laptop). Compatibility of Python packages and CUDA version should be ascertained. 
