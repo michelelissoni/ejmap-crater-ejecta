@@ -103,7 +103,7 @@ Python scripts called by the bash executables and custom Python modules. The use
 **TV-Test splits**  
 ├── data  
 │   ├── conn_data  
-│   │   ├── *az_positions_all.csv* : list of all TVT azimuthal tiles, the `test\_{SPLIT CODE}` columns assign them to TV (0) or Test (1).  
+│   │   ├── *az_positions_all.csv* : list of all TVT azimuthal tiles, the `test_{SPLIT CODE}` columns assign them to TV (0) or Test (1).  
 
 **EJCONN: the Connection model**  
 ├── data  
@@ -196,8 +196,30 @@ Python scripts called by the bash executables and custom Python modules. The use
 
 <br/>
 
-├── log
-│   ├── conn_log
-│   └── ejc_log
+### Log
+The log files are usually temporary, deleted at the end of a training run. But they can be preserved (`train_run_config.cfg`: `RM_LOG=0`) to save the weights (.ckpt files) of each training iteration (not doable for all runs, but for the most important ones).
 
-├── images
+**EJCONN: the Connection model**  
+├── log  
+│   ├── conn_log  
+│   │   ├── version\_{VERSION NUMBER}  
+│   │   │   ├── checkpoints  
+│   │   │   │   ├── *best-checkpoint_test-set\-{TV-TEST SPLIT}\_iteration\-{ITERATION NUMBER}.ckpt* : the model weights for a Train-Val split  
+│   │   │   ├── norms  
+│   │   │   │   ├── *norm_test-set\-{TV-TEST SPLIT}\_iteration\-{ITERATION NUMBER}.ckpt* : the normalization for a Train-Val split  
+│   │   │   ├── positions  
+│   │   │   │   ├── *eval-pos_test-set\-{TV-TEST SPLIT}\_iteration\-{ITERATION NUMBER}.csv* : connected mapping tiles for a Train-Val split  
+│   │   │   ├── tests  
+│   │   │   │   ├── *results_test-set\-{TV-TEST SPLIT}\_iteration\-{ITERATION NUMBER}.json* : training run data and tests on the TVT tiles  
+
+**EJSEG: the Segmentation model**  
+├── log  
+│   ├── ejc_log  
+│   │   ├── version\_{VERSION NUMBER}  
+│   │   │   ├── checkpoints  
+│   │   │   │   ├── *best-checkpoint_test-set\-{TV-TEST SPLIT}\_iteration\-{ITERATION NUMBER}.ckpt* : the model weights for a Train-Val split  
+│   │   │   ├── norms  
+│   │   │   │   ├── *norm_test-set\-{TV-TEST SPLIT}\_iteration\-{ITERATION NUMBER}.ckpt* : the normalization for a Train-Val split  
+│   │   │   ├── tests  
+│   │   │   │   ├── *eval_conn-version\-{EJCONN VERSION}\_test-set\-{TV-TEST SPLIT}_iteration\-{ITERATION NUMBER}.json* : evaluation metrics  
+│   │   │   │   ├── *results_test-set\-{TV-TEST SPLIT}\_iteration\-{ITERATION NUMBER}.json* : training run data and tests on the TVT tiles  
