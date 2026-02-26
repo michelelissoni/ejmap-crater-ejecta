@@ -21,7 +21,8 @@ EJMAP consists in two neural network models: EJCONN, a classification model that
    - Step 5 is used to generate new TV-Test splits.
    - Step 6 generates different mapping (eval) tiles.<br/><br/>
 5. Choose the EJCONN and EJSEG versions you want to use. The hyperparameters of the versions are shown in `code/connection_version_hparams.csv` and `code/ejecta_version_hparams.csv`. You can try new hyperparameter combinations by adding rows to these files (each with a unique version number).<br/><br/>
-6. Configure your training run by editing `code/train_run_config.cfg`. Launch the training with `launch_training.sh` (local machine) or `training_slurm_launch.sh` (on a computing cluster). <br/><br/>
+6. Configure your training run by editing `code/train_run_config.cfg`. Launch the training with `launch_training.sh` (local machine) or `training_slurm_launch.sh` (on a computing cluster).
+   - If working on a computing cluster, make sure the `#SBATCH` options in the `code/*.slurm` files are appropriate for your cluster. <br/><br/>
 7. Check the results in the `results/conn_results/version_{VERSION NUMBER}` and `results/ejc_results/version_{VERSION NUMBER}` folders. The `eval_metrics.csv` files show the evaluation metrics. The `.ckpt` files contain the model weights.
    - For full replication, the `.ckpt` files of each iteration should be retrieved. In `code/train_run_config.cfg`, set `RM_LOG=0`, then copy them from the `version_{VERSION NUMBER}/checkpoints` directory in `log/conn_log` or `log/ejc_log`. Due to their size, this is feasible only for important runs.<br/><br/>
 8. Run the Python script `code/create_map.py` (or launch parallel mapping processes with `mapping_launch_slurm.sh`, after configuring `code/mapping_run_config.cfg`) to generate the individual ejecta masks and the color composite map.<br/><br/>
@@ -59,10 +60,6 @@ These scripts and notebooks need to be run to execute the installation, preproce
 │   ├── *ejecta_map_percrater_postprocess.ipynb* : code for various post-processing operations  
 │   ├── *crater_pattern_analysis.ipynb* : code for crater pattern analysis and comparison with manual maps  
 
-**Planet characteristics**  
-├── code  
-│   ├── *planet_constants.py* : holds the parameters of the planet. Change to apply to a different planet.
-
 <br/>
 
 ### Back-end files
@@ -85,6 +82,10 @@ Python scripts called by the bash executables and custom Python modules. The use
 │   ├── *ejecta_data_module.py* : data module, retrieves the data for training, testing and prediction  
 │   ├── *ejecta_data_preparation.py* : functions handling data preprocessing, model configuration, training, prediction, mapping  
 │   ├── *smp_custom_models.py* : segmentation neural network architecture  
+
+**Planet characteristics**  
+├── code  
+│   ├── *planet_constants.py* : holds the parameters of the planet. Change to apply to a different planet.
 
 **Utilities**  
 ├── code  
