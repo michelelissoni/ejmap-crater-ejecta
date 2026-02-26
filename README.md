@@ -91,9 +91,11 @@ Python scripts called by the bash executables and custom Python modules. The use
 
 **Ground truth**  
 ├── data  
+
 │   ├── cyl_data  
 │   │   ├── *mask_crater\_{CRATER FID}.tif* : manually-mapped ejecta inside the TVT tiles for a given crater, cylindrical projection.  
 │   │   ├── *positions_crater\_{CRATER FID}.csv* : tile positions in cylindrical projection. Access with [QClassiPy](https://plugins.qgis.org/plugins/QClassiPy/) to modify the masks.  
+
 │   ├── ejc_data  
 │   │   ├── *human_mask.tif* : manually-mapped ejecta inside the TVT tiles for all craters, cylindrical projection.  
 │   │   ├── *human_positions.csv* : tile positions in cylindrical projection. Define additional tiles here.
@@ -105,33 +107,45 @@ Python scripts called by the bash executables and custom Python modules. The use
 
 **EJCONN: the Connection model**  
 ├── data  
-├── conn_data  
+│   ├── conn_data  
+
 │   │   ├── images  
 │   │   │   ├── *image\_{POS INDEX}\_crater\_{CRATER FID}.npy* : image channels, TVT  
+
 │   │   ├── attention  
 │   │   │   ├── *att\_{POS INDEX}\_crater\_{CRATER FID}.npy* : attention channel, TVT  
+
 │   │   ├── eval_positions  
 │   │   │   ├── *eval_positions_crater\_{CRATER FID}.csv* : list of azimuthal tile "eval" positions used for the mapping  
+
 │   │   ├── eval_images  
 │   │   │   ├── *eval_image\_{EVAL POS INDEX}\_crater\_{CRATER FID}.npy* : image channels, mapping  
+
 │   │   ├── eval_attention  
 │   │   │   ├── *att\_{EVAL POS INDEX}\_crater\_{CRATER FID}.npy* : attention channel, mapping  
 
 **EJSEG: the Connection model**  
 ├── data  
 │   ├── ejc_data  
+
 │   │   ├── positions  
 │   │   │   ├── *az_positions_crater\_{CRATER FID}.csv* : list of the azimuthal TVT positions
+
 │   │   ├── images  
 │   │   │   ├── *image\_{POS INDEX}\_crater\_{CRATER FID}.npy* : image channels, TVT  
+
 │   │   ├── masks  
 │   │   │   ├── *mask\_{POS INDEX}\_crater\_{CRATER FID}.npy* : manual ejecta mask, TVT  
+
 │   │   ├── distances  
 │   │   │   ├── *distance\_{POS INDEX}\_crater\_{CRATER FID}.npy* : distance channel, TVT  
+
 │   │   ├── eval_images  
 │   │   │   ├── *eval_image\_{EVAL POS INDEX}\_crater\_{CRATER FID}.npy* : image channels, mapping  
+
 │   │   ├── eval_distances  
 │   │   │   ├── *eval_distance\_{EVAL POS INDEX}\_crater\_{CRATER FID}.npy* : distance channel, mapping  
+
 │   │   ├── buffers  
 │   │   │   ├── *az_crater\_{CRATER FID}.tif* : mosaic portion around crater to extract annulus value for metadata. 
 
@@ -141,7 +155,7 @@ Python scripts called by the bash executables and custom Python modules. The use
 │   │   ├── *cylindrical_mosaic.tif* : the Enhanced Color mosaic, cylindrical projection  
 │   │   ├── *azimuthal_mosaic_crater\_{CRATER FID}.tif* : Enhanced Color mosaic, azimuthal projection centered on crater  
 
-**MAN: the manually-mapped craters**
+**MAN: the manually-mapped craters**  
 ├── data  
 │   ├── man_data  
 │   │   ├── *az_manual\_{CRATER NAME}.tif* : the azimuthal global ejecta mask  
