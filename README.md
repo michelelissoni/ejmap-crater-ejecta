@@ -17,7 +17,7 @@ EJMAP consists in two neural network models: EJCONN, a classification model that
 3. Run the `install.sh` script to adapt the file paths to your directory structure.
    - Alternatively, you can choose to move some subfolders elsewhere (for example, if your computing cluster has multiple storage spaces). In that case, update the paths manually in the config files (`code/*.cfg`) and in the Jupyter Notebooks (`code/*.ipynb`).<br/><br/>
 4. Run steps 1, 4, 7 of the Jupyter Notebook `code/ejecta_map_percrater.ipynb` to generate the remaining data files (this could take several hours).
-   - Steps 2 and 3 need to be run if you want to modify the manual ejecta masks used for training. You can do so in QGIS with [QClassiPy](https://plugins.qgis.org/plugins/QClassiPy/).
+   - Steps 2 and 3 need to be run if you want to modify the manual ejecta masks (in `data/cyl_data`) used for training. You can do so in QGIS with [QClassiPy](https://plugins.qgis.org/plugins/QClassiPy/).
    - Step 5 is used to generate new TV-Test splits.
    - Step 6 generates different mapping (eval) tiles.<br/><br/>
 5. Choose the EJCONN and EJSEG versions you want to use. The hyperparameters of the versions are shown in `code/connection_version_hparams.csv` and `code/ejecta_version_hparams.csv`. You can try new hyperparameter combinations by adding rows to these files (each with a unique version number).<br/><br/>
