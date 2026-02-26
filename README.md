@@ -92,8 +92,8 @@ Python scripts called by the bash executables and custom Python modules. The use
 **Ground truth**  
 ├── data  
 │   ├── cyl_data  
-│   │   ├── *mask_crater_[CRATER FID].tif* : manually-mapped ejecta inside the TVT tiles for a given crater, cylindrical projection.  
-│   │   ├── *positions_crater_[CRATER FID].csv* : tile positions in cylindrical projection. Access with [QClassiPy](https://plugins.qgis.org/plugins/QClassiPy/) to modify the masks.  
+│   │   ├── *mask_crater\_{CRATER FID}.tif* : manually-mapped ejecta inside the TVT tiles for a given crater, cylindrical projection.  
+│   │   ├── *positions_crater\_{CRATER FID}.csv* : tile positions in cylindrical projection. Access with [QClassiPy](https://plugins.qgis.org/plugins/QClassiPy/) to modify the masks.  
 │   ├── ejc_data  
 │   │   ├── *human_mask.tif* : manually-mapped ejecta inside the TVT tiles for all craters, cylindrical projection.  
 │   │   ├── *human_positions.csv* : tile positions in cylindrical projection. Define additional tiles here.
@@ -101,30 +101,52 @@ Python scripts called by the bash executables and custom Python modules. The use
 **TV-Test splits**  
 ├── data  
 │   ├── conn_data  
-│   │   ├── *az_positions_all.csv* : list of all TVT azimuthal tiles, the `test_[SPLIT CODE]` columns assign them to TV (0), Test (1), invalid (-1).  
+│   │   ├── *az_positions_all.csv* : list of all TVT azimuthal tiles, the `test\_{SPLIT CODE}` columns assign them to TV (0) or Test (1).  
 
 **EJCONN: the Connection model**  
+├── data  
 ├── conn_data  
 │   │   ├── images  
-│   │   │   ├── *image_[POS INDEX]_crater_[CRATER FID].npy* : image channels, training  
+│   │   │   ├── *image\_{POS INDEX}\_crater\_{CRATER FID}.npy* : image channels, TVT  
 │   │   ├── attention  
-│   │   │   ├── *att_[POS INDEX]_crater_[CRATER FID].npy* : attention channel, training  
+│   │   │   ├── *att\_{POS INDEX}\_crater\_{CRATER FID}.npy* : attention channel, TVT  
 │   │   ├── eval_positions  
-│   │   │   ├── *eval_positions_crater_[CRATER FID].csv* : list of azimuthal tile "eval" positions used for the mapping.  
+│   │   │   ├── *eval_positions_crater\_{CRATER FID}.csv* : list of azimuthal tile "eval" positions used for the mapping  
 │   │   ├── eval_images  
-│   │   │   ├── *eval_image_[EVAL POS INDEX]_crater_[CRATER FID].npy* : image channels, training  
-│   │   ├── eval_attention
-│   │   │   ├── *att_[EVAL POS INDEX]_crater_[CRATER FID].npy* : attention channel, training  
-│   ├── ejc_data
-│   │   ├── buffers
-│   │   ├── distances
-│   │   ├── eval_distances
-│   │   ├── eval_images
-│   │   ├── images
-│   │   ├── masks
-│   │   └── positions
-│   ├── man_data
-│   └── mosaics
+│   │   │   ├── *eval_image\_{EVAL POS INDEX}\_crater\_{CRATER FID}.npy* : image channels, mapping  
+│   │   ├── eval_attention  
+│   │   │   ├── *att\_{EVAL POS INDEX}\_crater\_{CRATER FID}.npy* : attention channel, mapping  
+
+**EJSEG: the Connection model**  
+├── data  
+│   ├── ejc_data  
+│   │   ├── positions  
+│   │   │   ├── *az_positions_crater\_{CRATER FID}.csv* : list of the azimuthal TVT positions
+│   │   ├── images  
+│   │   │   ├── *image\_{POS INDEX}\_crater\_{CRATER FID}.npy* : image channels, TVT  
+│   │   ├── masks  
+│   │   │   ├── *mask\_{POS INDEX}\_crater\_{CRATER FID}.npy* : manual ejecta mask, TVT  
+│   │   ├── distances  
+│   │   │   ├── *distance\_{POS INDEX}\_crater\_{CRATER FID}.npy* : distance channel, TVT  
+│   │   ├── eval_images  
+│   │   │   ├── *eval_image\_{EVAL POS INDEX}\_crater\_{CRATER FID}.npy* : image channels, mapping  
+│   │   ├── eval_distances  
+│   │   │   ├── *eval_distance\_{EVAL POS INDEX}\_crater\_{CRATER FID}.npy* : distance channel, mapping  
+│   │   ├── buffers  
+│   │   │   ├── *az_crater\_{CRATER FID}.tif* : mosaic portion around crater to extract annulus value for metadata. 
+
+**Mosaics**  
+├── data  
+│   ├── mosaics  
+│   │   ├── *cylindrical_mosaic.tif* : the Enhanced Color mosaic, cylindrical projection  
+│   │   ├── *azimuthal_mosaic_crater\_{CRATER FID}.tif* : Enhanced Color mosaic, azimuthal projection centered on crater  
+
+**MAN: the manually-mapped craters**
+├── data  
+│   ├── man_data  
+│   │   ├── *az_manual\_{CRATER NAME}.tif* : the azimuthal global ejecta mask  
+│   │   ├── *manual_FID_map.tif* : a cylindrical map distinguishing the ejecta of different craters  
+
 ├── images
 ├── log
 │   ├── conn_log
