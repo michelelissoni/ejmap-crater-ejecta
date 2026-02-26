@@ -161,15 +161,43 @@ Python scripts called by the bash executables and custom Python modules. The use
 │   │   ├── *az_manual\_{CRATER NAME}.tif* : the azimuthal global ejecta mask  
 │   │   ├── *manual_FID_map.tif* : a cylindrical map distinguishing the ejecta of different craters  
 
-├── images
+<br/>
+
+### Results
+
+**EJCONN: the Connection model**  
+├── results  
+│   ├── conn_results  
+│   │   ├── version_32 : final version  
+│   │   │   ├── *best-checkpoint_test-set-61_iteration\-{ITERATION NUMBER}.ckpt* : the model weights for a Train-Val split  
+│   │   │   ├── *best-norm_test-set-61.npy* : the normalization for the input data  
+│   │   │   ├── *test_metrics.csv* : training run data and tests on the TVT tiles (not used for evaluation)  
+│   │   │   ├── conn_positions  
+│   │   │   │   ├── *conn-pos_test-set-61_crater\-{CRATER FID}.csv* : the connected tiles for a given crater  
+│   │   ├── version_{VERSION NUMBER}   
+
+**EJSEG: the Segmentation model**  
+├── results  
+│   ├── ejc_results  
+│   │   ├── version_200 : final version  
+│   │   │   ├── *best-checkpoint_test-set-61_iteration\-{ITERATION NUMBER}.ckpt* : the model weights for a Train-Val split  
+│   │   │   ├── *best-norm_test-set-61.npy* : the normalization for the input data  
+│   │   │   ├── *eval_metrics.csv* : evaluation metrics  
+│   │   │   ├── *test_metrics.csv* : training run data and tests on the TVT tiles (not used for evaluation)  
+│   │   ├── version_{VERSION NUMBER}   
+
+**Ejecta map**  
+├── results  
+│   ├── output_masks  
+│   │   ├── ejc-version-200_conn-version-32_test-set-61_x20 : final version  
+│   │   │   ├── *cylindrical_mask_crater\_{CRATER FID}.tif* : the cylindrical ejecta mask for a given crater  
+│   │   │   ├── *ml_FID_map_all.tif* : a cylindrical map distinguishing the ejecta of different craters  
+│   │   │   ├── *ejecta-map_all.tif* : the color composite global map  
+
+<br/>
+
 ├── log
 │   ├── conn_log
 │   └── ejc_log
-└── results
-    ├── conn_results
-    │   ├── version_...
-    │   │   └── conn_positions
-    ├── ejc_results
-    │   ├── version_...
-    └── output_masks
-        └── ejc-version-200_conn-version-32_test-set-61_x20
+
+├── images
