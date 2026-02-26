@@ -5,6 +5,28 @@ A repository for EJMAP, a deep learning algorithm to map crater ejecta on the su
 
 EJMAP consists in two neural network models: EJCONN, a classification model that selects the tiles of a Mercury mosaic where the ejecta from a given crater are located, and EJSEG, a segmentation model which maps the ejecta on those tiles ([explanatory diagram](https://github.com/michelelissoni/ejmap-crater-ejecta/blob/main/images/mapping_procedure.png)).
 
+## Instructions for replication
+
+1. Download or clone this repository. <br/><br/>
+2. Go to the [data repository](https://doi.org/10.5281/zenodo.18787894) and download the `results.zip` and `data.zip` files. Unzip them in the repository root folder. There should now be five subfolders:   
+      ├── code  
+      ├── data  
+      ├── images  
+      ├── log  
+      └── results<br/><br/> 
+3. Run the `install.sh` script to adapt the file paths to your directory structure.
+   - Alternatively, you can choose to move some subfolders elsewhere (for example, if your computing cluster has multiple storage spaces). In that case, update the paths manually in the config files (`code/*.cfg`) and in the Jupyter Notebooks (`code/*.ipynb`).<br/><br/>
+4. Run steps 1, 4, 7 of the Jupyter Notebook `code/ejecta_map_percrater.ipynb` to generate the remaining data files (this could take several hours).
+   - Steps 2 and 3 need to be run if you want to modify the manual ejecta masks used for training. You can do so in QGIS with [QClassiPy](https://plugins.qgis.org/plugins/QClassiPy/).
+   - Step 5 is used to generate new TV-Test splits.
+   - Step 6 generates different mapping (eval) tiles.<br/><br/>
+5. Choose the EJCONN and EJSEG versions you want to use. The hyperparameters of the versions are shown in `code/connection_version_hparams.csv` and `code/ejecta_version_hparams.csv`. You can try new hyperparameter combinations by adding rows to these files (each with a unique version number).<br/><br/>
+6. Configure your training run by editing `code/train_run_config.cfg`. Launch the training with `launch_training.sh` (local machine) or `training_slurm_launch.sh` (on a computing cluster). <br/><br/>
+7. Check the results in the `results/conn_results/version_{VERSION NUMBER}` and `results/ejc_results/version_{VERSION NUMBER}` folders. The `eval_metrics.csv` files show the evaluation metrics. The `.ckpt` files contain the model weights.
+   - For full replication, the `.ckpt` files of each iteration should be retrieved. In `code/train_run_config.cfg`, set `RM_LOG=0`, then copy them from the `version_{VERSION NUMBER}/checkpoints` directory in `log/conn_log` or `log/ejc_log`. Due to their size, this is feasible only for important runs.<br/><br/>
+8. Run the Python script `code/create_map.py` (or launch parallel mapping processes with `mapping_launch_slurm.sh`, after configuring `code/mapping_run_config.cfg`) to generate the individual ejecta masks and the color composite map.<br/><br/>
+9. Run post-processing operations and analyses using the `code/ejecta_map_percrater_postprocess.ipynb` and `code/crater_pattern_analysis.ipynb` Jupyter Notebooks. 
+
 ## File tree
 
 ### User-facing files
