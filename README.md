@@ -182,7 +182,8 @@ Python scripts called by the bash executables and custom Python modules. The use
 ├── data  
 │   ├── man_data  
 │   │   ├── *az_manual\_{CRATER NAME}.tif* : the azimuthal global ejecta mask  
-│   │   ├── *manual_FID_map.tif* : a cylindrical map distinguishing the ejecta of different craters  
+│   │   ├── *manual_FID_map.tif* : a cylindrical map distinguishing the ejecta of different craters
+│   │   ├── *analysis_hm.csv* : analysis of crater patterns  
 
 <br/>
 
@@ -216,6 +217,8 @@ Python scripts called by the bash executables and custom Python modules. The use
 │   │   │   ├── *cylindrical_mask_crater\_{CRATER FID}.tif* : the cylindrical ejecta mask for a given crater  
 │   │   │   ├── *ml_FID_map_all.tif* : a cylindrical map distinguishing the ejecta of different craters  
 │   │   │   ├── *ejecta-map_all.tif* : the color composite global map  
+│   │   │   ├── *analysis_overlaps.csv* : analysis of crater patterns  
+│   │   │   ├── *analysis_clean.csv* : analysis of crater patterns with overlaps removed  
 
 <br/>
 
