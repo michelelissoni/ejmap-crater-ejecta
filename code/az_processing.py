@@ -327,7 +327,7 @@ def reprojectBasemap(src_da, nodata = 0, num_threads = 1):
     dst_extent = Planet_Basemap.BASEMAP_EXTENT # Bounds
     dst_crs = Planet_CRS.CYL_CRS # CRS
     
-    dst_arr = np.zeros((src_arr.shape[0], dst_height, dst_width), dtype=np.uint8)
+    dst_arr = np.zeros((src_arr.shape[0], dst_height, dst_width), dtype=src_arr.dtype)
     
     # Compute coordinates (TO DO: switch to geotransform).
     

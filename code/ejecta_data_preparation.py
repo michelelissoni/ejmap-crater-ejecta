@@ -395,6 +395,7 @@ def createEjectaMap(mask_paths = None, eval_positions_df = None, model_path = No
                   57: 'wheat', 
                   58: 'olive',
                   65: 'snow',
+                  78: 'mediumorchid',
                   84: 'grey',
                   90: 'midnightblue',
                   99: 'darksalmon', 

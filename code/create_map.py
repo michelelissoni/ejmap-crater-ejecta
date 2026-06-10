@@ -228,7 +228,7 @@ if __name__ == "__main__":
                 load_mask_paths.append(mask_path)
                 
         load_mask_paths = np.array(load_mask_paths, dtype=str)
-        save_map_path = os.path.join(args.load_masks_dir, 'ejecta-map.tif')
+        save_map_path = os.path.join(args.load_masks_dir, 'color-composite.tif')
         eval_positions_df = None
         ejc_model_path = None
         ejc_data_module = None
